@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Masterklass Qadam</title>
-		<link rel="stylesheet" href="main.css" />
+		<title>Masterklass</title>
+		<link rel="stylesheet" href="style.css" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
@@ -25,30 +25,78 @@
 						<p class="title">ONLINE MASTERKLASS</p>
 					</div>
 				</div>
-				<h2 class="text">SIZ 98% ISHNI BAJARDINGIZ SO'NGI QADAM QOLDI</h2>
-				<div>
-					<div class="progress-des">
-						<p>98/ <span>100%</span></p>
-						<img src="icon/flag.svg" alt="icon" />
+				<h2 class="text"><span>Uzum market</span>da 0 dan biznes boshlash va savdoni 2X oshirish</h2>
+				<div class="course-des">
+					<h2>Masterklassda siz:</h2>
+					<div>
+						<img src="icon/1.svg" alt="icon" />
+						<p>Qanday qilib Uzum market orqali 0 dan daromad qilish mumkinligini</p>
 					</div>
-					<div class="progress-bar">
-						<div class="progress"></div>
+					<div>
+						<img src="icon/1.svg" alt="icon" />
+						<p>Uzum marketda 1000$ topish uchun qadam-ba qadam ketma-ketlikni</p>
+					</div>
+					<div>
+						<img src="icon/1.svg" alt="icon" />
+						<p>Uzum marketda biznes boshlayotganda 80% inson yo’l qo’yadigan xatolar va yechimlarini o'rganib olasiz!</p>
 					</div>
 				</div>
-				<div class="text2">Masterklassda qatnashish uchun telegram kanalimizga obuna bo'ling</div>
-				<img class="arrows" src="icon/arrows.svg" alt="arrows" />
-				<a href="https://t.me/your_channel" target="_blank" class="telegram-button">
-					<img class="telegram-logo" src="icon/telegram-logo-48.png" alt="telegram logo" /> <span>OBUNA BO'LISH</span></a
-				>
+				<div class="mistakes">
+					<img src="icon/thank_you_gift@1x.png" alt="icon" />
+					<p>Uzum marketda savdo boshlashdan oldin bilishingiz shart bo'lgan top 5 xato</p>
+				</div>
+				<button class="btn" onclick="openModal()">Ro'yhatdan o'tish</button>
 			</div>
 			<div class="box2">
-				<img class="box-img" src="icon/thank_you_gift@1x.png" alt="icon" />
-				<img class="arrow" src="icon/arrow.svg" alt="arrow" />
-				<p>
-					Obuna bo'lishingiz bilan "Uzum marketda savdo boshlashdagi top 5 xato va yechim" nomli qo'llanmangiz bepul qo'lingizga
-					kiradi.
-				</p>
+				<h2 class="text-block"><span>Uzum market</span>da 0 dan biznes boshlash va savdoni 2X oshirish</h2>
+				<img class="mentor-img" src="mentor.png" alt="icon" />
+				<div class="mentor">
+					<h2>Farhod Ruzmatov</h2>
+					<div>
+						<img src="icon/uzum_logo.svg" alt="icon" />
+						<p>Cosmos brendi asoschisi va Uzum marketning rasmiy spikeri</p>
+					</div>
+				</div>
 			</div>
 		</div>
+		<div class="modal" id="modal">
+			<div class="modal-content">
+				<span class="close" onclick="closeModal()">&times;</span>
+				<h2>Joy band qilish</h2>
+				<form id="registrationForm" name="submit-to-google-sheet">
+					<label for="name">Ism </label>
+					<input type="text" id="name" name="name" placeholder="Ismingizni kiriting" required />
+
+					<label for="phone">Telefon raqami</label>
+					<input type="tel" id="phone" name="phone" pattern="^\+998\s\d{2}\s\d{3}\s\d{2}\s\d{2}$" placeholder="+998 99 123 45 67" required />
+
+					<button type="submit">Jo'natish</button>
+				</form>
+			</div>
+		</div>
+
+		<script>
+			function openModal() {
+					document.getElementById("modal").style.display = "flex";
+			}
+
+			function closeModal() {
+					document.getElementById("modal").style.display = "none";
+			}
+
+			const scriptURL = 'https://script.google.com/macros/s/AKfycbxTU8GlkkV5Z2kO5f_MChXtxFHAGcIQm-lHDnA0lT9QIDjQCAwN1gWQf-U1PcNlRnkC/exec'
+			const form = document.forms['submit-to-google-sheet']
+
+			form.addEventListener('submit', e => {
+					e.preventDefault()
+					fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+							.then(response => {
+									console.log('Success!', response)
+									closeModal(); 
+									window.location.href = 'telegram/telegram.html'; 
+							})
+							.catch(error => console.error('Error!', error.message))
+			})
+	</script>
 	</body>
 </html>
