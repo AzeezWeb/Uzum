@@ -68,7 +68,12 @@
 					<input type="text" id="name" name="name" placeholder="Ismingizni kiriting" required />
 
 					<label for="phone">Telefon raqami</label>
-					<input type="tel" id="phone" name="phone" pattern="^\+998\s\d{2}\s\d{3}\s\d{2}\s\d{2}$" placeholder="+998 99 123 45 67" required />
+					<input type="tel" id="phone" name="phone" 
+					pattern="^\+998\d{9}$" 
+					placeholder="+998991234567" 
+					required 
+					onfocus="formatPhoneNumber(event)" 
+					oninput="formatPhoneNumber(event)" />
 
 					<button type="submit">Jo'natish</button>
 				</form>
@@ -83,6 +88,15 @@
 			function closeModal() {
 					document.getElementById("modal").style.display = "none";
 			}
+
+			function formatPhoneNumber(event) {
+            
+            const input = event.target;
+            if (input.value === "") {
+                input.value = "+998 ";
+            }
+            input.value = input.value.replace(/\s+/g, '');
+        }
 
 			const scriptURL = 'https://script.google.com/macros/s/AKfycbxTU8GlkkV5Z2kO5f_MChXtxFHAGcIQm-lHDnA0lT9QIDjQCAwN1gWQf-U1PcNlRnkC/exec'
 			const form = document.forms['submit-to-google-sheet']
